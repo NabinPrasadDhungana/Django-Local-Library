@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>All Books That Have Been Borrowed</h1>
+
+    {% if bookinstance_list %}
+        <table border="1" cellspacing="0" cellpadding="10" >
+            <tr>
+                <th>Book name</th>
+                <th>Borrower</th>
+            </tr>
+            {% for bookinst in bookinstance_list %}
+                <tr>
+                    <td><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book }}</a> ({{ bookinst.due_back }})</td>
+                    <td>{{ bookinst.borrower }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% endif %}
+{% endblock  %}
