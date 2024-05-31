@@ -11,11 +11,15 @@
             </tr>
             {% for bookinst in bookinstance_list %}
                 <tr>
-                    <td><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book }}</a> ({{ bookinst.due_back }})</td>
+                    <td><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> ({{ bookinst.due_back }})</td>
+                    {% if user.is_staff %}
                     <td>{{ bookinst.borrower }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
 
         </table>
+        {% else %}
+        <p>There are no books borrowed.</p>
     {% endif %}
 {% endblock  %}

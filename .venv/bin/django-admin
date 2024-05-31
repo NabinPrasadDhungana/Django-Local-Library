@@ -1,4 +1,4 @@
-#!/mnt/E/Python/Django/API/start_of_4th_sem/Local_Library/.venv/bin/python
+#!/mnt/E/Python/Django/API/start_of_4th_sem/Local_Library/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
