@@ -1,5 +1,32 @@
 {% extends 'base_generic.html' %}
 
+
+{% block sidebar %}
+  {{ block.super }}
+  <hr>
+  
+{% if perms.catalog.change_book or perms.catalog.delete_book %}
+    
+  
+  <ul class="sidebar-nav">
+    {% if perms.catalog.change_book %}
+      <li><a href="{% url 'book-update' book.id %}">Update book</a></li>
+    {% endif %}
+    
+    
+    {% if perms.catalog.delete_book %}
+      <li><a href="{% url 'book-delete' book.id %}">Delete book</a></li>
+    {% endif %}
+      
+    
+    
+{% endif %}
+
+  </ul>
+    
+{% endblock sidebar %}
+  
+
 {% block content %}
   <h1>Title: {{ book.title }}</h1>
   <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
