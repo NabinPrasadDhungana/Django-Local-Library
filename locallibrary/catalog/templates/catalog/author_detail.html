@@ -1,10 +1,35 @@
 {% extends 'base_generic.html' %}
 
+{% block sidebar %}
+  {{ block.super }}
+
+  {% if perms.catalog.change_author or perms.catalog.delete_author %}
+  <hr>
+  <ul class="sidebar-nav">
+    {% if perms.catalog.change_author %}
+      <li><a href="{% url 'author-update' author.id %}">Update author</a></li>
+    {% endif %}
+    {% if perms.catalog.delete_author %}
+      <li><a href="{% url 'author-delete' author.id %}">Delete author</a></li>
+    {% endif %}
+    </ul>
+  {% endif %}
+
+{% endblock %}
+
+
 {% block content %}
 <h1>Name: {{ author.last_name }} {{ author.first_name }}</h1>
 <div style="margin-left:20px;margin-top:20px">
 <p><strong>Date of birth: </strong>{{ author.date_of_birth }}</p>
-<p><strong>Date of death: </strong>{{ author.date_of_death }}</p>
+
+{% if author.date_of_death %}
+    <p><strong>Date of death: </strong>{{ author.date_of_death }}</p>
+{% else %}
+    <p><strong>Date of death: </strong> Still alive </p>
+
+{% endif %}
+    
     <h3>Books:</h3>
     <ul>
 
