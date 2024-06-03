@@ -43,11 +43,18 @@
       <hr />
       <p
         class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
-        {{ copy.get_status_display }}
+        {{ copy.get_status_display }} 
       </p>
-      {% if copy.status != 'a' %}
-        <p><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
-      {% endif %}
+      <div style="display: flex; flex-wrap: wrap; align-items: center;">
+
+        {% if copy.status != 'a' %}
+        <p style="padding-top: 1rem;"><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
+          {% if copy.status == 'o' %}
+        <a style="margin:  0px 2rem;" href="{% url 'renew-book-librarian' copy.id %}" class="btn btn-success">Renew book</a>
+          {% endif %}
+        {% endif %}
+      </div>
+        
       <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
       <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
     {% endfor %}
