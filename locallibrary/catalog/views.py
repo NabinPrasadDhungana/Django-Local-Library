@@ -27,7 +27,7 @@ def index(request):
     #The 'all()' is implied by default.
     num_authors = Author.objects.all().count()
     
-    num_genres =Genre.objects.count()
+    num_genres = Genre.objects.count()
     
     # Number of visits to this view, as counted in the session variable.
     num_visits = request.session.get('num_visits', 0)

@@ -130,3 +130,6 @@ LOGOUT_REDIRECT_URL = 'index'  # or another URL you want to redirect to after lo
 LOGIN_REDIRECT_URL = 'index'  # or another URL you want to redirect to after login
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+AUTH_USER_MODEL = 'catalog.CustomUser'
