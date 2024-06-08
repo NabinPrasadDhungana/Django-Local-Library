@@ -18,15 +18,15 @@
       max-width: 400px;
       border: 1px solid #ccc;
       border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);`  `
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
   .login-card .card-header {
       background-color: #5F9EA0;
       color: white;
       padding: 0.5rem;
       border-top-left-radius: 1rem;
       border-top-right-radius: 1rem;
-
   }
   .btn {
       background-color: #5F9EA0;
@@ -42,7 +42,7 @@
     margin: 1rem 1rem 0.5rem 1rem;
   }
 </style>
-
+  
   {# Assumes you set up the password_reset view in your URLconf #}
   <div class="container">
     <div class="row justify-content-center">
@@ -51,6 +51,7 @@
             <div class="card-header text-center">
               <h4>Login</h4>
             </div>
+  
             <div class="card-body col-12">
                 {% if form.errors %}
                 <p class="text-danger">Your username and password didn't match. Please try again.</p>
