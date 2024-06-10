@@ -8,6 +8,13 @@ from django.utils.translation import gettext_lazy as _
 
 from django.forms import ModelForm
 from .models import *
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import LoginView
+
+
+# class CustomLoginView(LoginView):
+#     form_class = AuthenticationForm
+#     template_name = 'registration/login.html'
 
 class RenewBookModelForm(ModelForm):
     def clean_due_back(self):

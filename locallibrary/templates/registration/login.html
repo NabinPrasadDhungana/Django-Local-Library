@@ -5,88 +5,104 @@
 {% block content %}
 
 <style>
-  body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f8f9fa;
-  }
-  
-  .login-card {
-      width: 100%;
-      max-width: 400px;
-      border: 1px solid #ccc;
-      border-radius: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
 
-  .login-card .card-header {
-      background-color: #5F9EA0;
-      color: white;
-      padding: 0.5rem;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
+  body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              background: rgb(174,238,234);
+              background: linear-gradient(90deg, rgba(174,238,234,1) 39%, rgba(208,148,233,1) 65%);
   }
-  .btn {
-      background-color: #5F9EA0;
-      color: white;
+  .card {
+      width: 30rem;
+      max-width: 400px;
+      background-color: rgba(174,238,234,0.6);
+      padding: 20px;
+      border-radius: 9px;
   }
-  a{
-      color: #5F9EA0;
-  }
-  p{
-    margin: 1rem 0.5rem 0.5rem 1rem;
-  }
-  .form-group{
-    margin: 1rem 1rem 0.5rem 1rem;
-  }
+  
 </style>
-  
-  {# Assumes you set up the password_reset view in your URLconf #}
-  <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-8">
-          <div class="card login-card">
-            <div class="card-header text-center">
-              <h4>Login</h4>
-            </div>
-  
-            <div class="card-body col-12">
-                {% if form.errors %}
-                <p class="text-danger">Your username and password didn't match. Please try again.</p>
-              {% endif %}
+
+<div class="card">
+  <div class="card-body">
+      <h3 class="card-title text-center text-info">Login</h3>
+      {% if form.errors %}
+              <p class="text-danger">Your username and password didn't match. Please try again.</p>
+            {% endif %}
             
-              {% if next %}
-                {% if user.is_authenticated %}
-                  <p class="text-danger">Your account doesn't have access to this page. To proceed,
-                  please login with an account that has access.</p>
-                {% else %}
-                  <p class="text-info">Please login to see this page.</p>
-                {% endif %}
+            {% if next %}
+              {% if user.is_authenticated %}
+                <p class="text-danger">Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+              {% else %}
+                <p class="text-info">Please login with your credentials.</p>
               {% endif %}
+            {% endif %}
+      <form method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="username" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+          <input type="hidden" name="next" value="{{ next }}">
+      </form>
+      <div class="card-footer text-center ">
+        <p>Don't have an account? <a href="#">Sign up</a></p>
+        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+      </div>
+  </div>
+</div>
+  
+  <!-- {# Assumes you set up the password_reset view in your URLconf #} -->
+  <!-- <div class="container">
+    <div class="justify-content-center">
+      <div class="col-md-4">
+        <div class="card login-card">
+          
+          <div class="card-header text-center col-md-8">
+            <h4>Login</h4>
+          </div>
+          <div class="card-body col-md-8">
+            {% if form.errors %}
+              <p class="text-danger">Your username and password didn't match. Please try again.</p>
+            {% endif %}
+            
+            {% if next %}
+              {% if user.is_authenticated %}
+                <p class="text-danger">Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+              {% else %}
+                <p class="text-info">Please login to see this page.</p>
+              {% endif %}
+            {% endif %}
               <form method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">Email</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your email" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
-                    </div>
-                      <button type="submit" class="btn  btn-block">Login</button>
-                      <input type="hidden" name="next" value="{{ next }}">
-                    </form>
+                <div class="form-group">
+                    <label for="username">Email</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your email" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
+                </div>
+                  <button type="submit" class="btn  btn-block">Login</button>
+                  <input type="hidden" name="next" value="{{ next }}">
+              </form>
+            <div class="card-footer text-muted text-center">
+                Don't have an account? <a href="#">Sign up</a>
+                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
             </div>
-                  <div class="card-footer text-muted text-center">
-                    Don't have an account? <a href="#">Sign up</a>
-                    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-                  </div>
           </div>
+        </div>
       </div>
     </div>
-</div>
+  </div> -->
 
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
