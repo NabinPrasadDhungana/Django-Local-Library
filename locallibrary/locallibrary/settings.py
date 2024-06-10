@@ -135,7 +135,7 @@ EMAIL_PORT = 587  # Port for the SMTP server
 EMAIL_USE_TLS = True  # Use TLS (recommended)
 EMAIL_USE_SSL = False  # Use SSL (if required by your SMTP server)
 EMAIL_HOST_USER = 'prnabin123@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'uqva ennx srbg cvln'  # Your email password
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Your email password
 DEFAULT_FROM_EMAIL = 'prnabin123@gmail.com'  # Default from email address
 
 

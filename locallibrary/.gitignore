@@ -1,3 +1,5 @@
 ../.venv
 .vscode/
 *.code-workspace
+.zshrc
+__pycache__/
