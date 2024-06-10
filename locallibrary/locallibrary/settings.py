@@ -129,7 +129,14 @@ LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'index'  # or another URL you want to redirect to after logout
 LOGIN_REDIRECT_URL = 'index'  # or another URL you want to redirect to after login
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'   # Your SMTP server
+EMAIL_PORT = 587  # Port for the SMTP server
+EMAIL_USE_TLS = True  # Use TLS (recommended)
+EMAIL_USE_SSL = False  # Use SSL (if required by your SMTP server)
+EMAIL_HOST_USER = 'prnabin123@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'uqva ennx srbg cvln'  # Your email password
+DEFAULT_FROM_EMAIL = 'prnabin123@gmail.com'  # Default from email address
 
 
 AUTH_USER_MODEL = 'catalog.CustomUser'
