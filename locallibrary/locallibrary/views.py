@@ -2,6 +2,8 @@ from .forms import CustomPasswordResetForm
 from django.contrib.auth.views import PasswordResetView
 from django.urls import reverse_lazy
 
+from django.conf import settings
+
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
 
@@ -16,7 +18,7 @@ class CustomPasswordResetView(PasswordResetView):
         try:
             form.save(
                 use_https=self.request.is_secure(),
-                from_email='webmaster@localhost',
+                from_email=settings.DEFAULT_FROM_EMAIL,
                 request=self.request,
             )
             return super().form_valid(form)
