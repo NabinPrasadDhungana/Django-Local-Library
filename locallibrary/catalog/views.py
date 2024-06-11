@@ -73,12 +73,11 @@ class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
     context_object_name = 'bookinstance_list'
 
     def get_queryset(self):
-        queryset = (
+        return (
             BookInstance.objects.filter(borrower=self.request.user)
             .filter(status__exact='o')
             .order_by('due_back')
         )
-        return queryset
 
 class LoanedBooksForLibrariansListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """Generic class-based view listing books on loan to all users to see for the Librarians."""
