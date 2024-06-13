@@ -5,6 +5,8 @@
 }
 
 body {
+  background-color: #244855;
+  color: #fff;
 }
 
 .sidebar-nav {
@@ -15,11 +17,48 @@ body {
     
 }
 
+
+.sidebar-nav a {
+    text-decoration: none;
+    display: block;
+    font-size: 1.6rem;
+    padding: 4px;
+    color: #fff;
+}
+
+.sidebar-nav a:hover {
+    background-color: #333;
+}
+
+.sidebar-toggle {
+    margin: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .col-sm-2 {
+        display: none;
+        position: absolute;
+        background-color: #f8f8f8;
+        height: 100%;
+        width: 200px;
+        z-index: 1000;
+    }
+
+    .col-sm-2.active {
+        display: block;
+    }
+}
+
 #logout-form {
     display: inline;
   }
 #logout-form button {
     padding: 0;
     margin: 0;
-  }
+}
   
+.header {
+  text-align: center;
+
+}
