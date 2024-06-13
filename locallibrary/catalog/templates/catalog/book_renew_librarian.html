@@ -1,7 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Renew: {{ book_instance.book.title }}</h1>
+  <div class="header">
+    <h1>Renew: {{ book_instance.book.title }}</h1>
+  </div>
   <p>Borrower: {{ book_instance.borrower }}</p>
   <p {% if book_instance.is_overdue %} class="text-danger"{% endif %} >Due date: {{ book_instance.due_back }}</p>
 

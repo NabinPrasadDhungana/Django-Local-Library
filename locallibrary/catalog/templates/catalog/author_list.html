@@ -1,7 +1,9 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-<h1>Author List</h1>
+<div class="header">
+    <h1>Author List</h1>
+</div>
 
 {% if author_list %}
     <ul>
@@ -13,7 +15,7 @@
             
     </ul>
     {% else %}
-    <p>There are authors listed in the library.</p>
+    <p>There are no authors listed in the library.</p>
 {% endif %}
 
     

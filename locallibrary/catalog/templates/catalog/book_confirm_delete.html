@@ -12,7 +12,9 @@
         margin: 1em;
     }
 </style>
+<div class="header">
     <h1>Delete Book: {{ book.title }}</h1>
+</div>
     
     {% if book.bookinstance_set.all %}
         <p class="text-danger">You can't delete this book until you delete all the instances related to it:</p>

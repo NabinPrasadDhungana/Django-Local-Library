@@ -36,12 +36,10 @@ body {
 }
 
 @media (max-width: 768px) {
-    .col-sm-2 {
+    .ham {
         display: none;
         position: absolute;
         background-color: #f8f8f8;
-        height: 100%;
-        width: 200px;
         z-index: 1000;
     }
 
@@ -60,5 +58,5 @@ body {
   
 .header {
   text-align: center;
-
+    padding: 2rem;
 }
