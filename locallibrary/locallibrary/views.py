@@ -48,4 +48,4 @@ class SignUpView(UserPassesTestMixin, CreateView):
         return not self.request.user.is_authenticated
     
     def handle_no_permission(self):
-        return redirect('home')
+        return redirect('index')
