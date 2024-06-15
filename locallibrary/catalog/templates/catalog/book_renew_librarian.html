@@ -1,17 +1,22 @@
-{% extends "base_generic.html" %}
+{% extends "base_generic.html" %} {% block content %}
+<div class="header">
+  <h1>Renew: {{ book_instance.book.title }}</h1>
+</div>
 
-{% block content %}
-  <div class="header">
-    <h1>Renew: {{ book_instance.book.title }}</h1>
-  </div>
+<hr>
+
+<div class="main">
   <p>Borrower: {{ book_instance.borrower }}</p>
-  <p {% if book_instance.is_overdue %} class="text-danger"{% endif %} >Due date: {{ book_instance.due_back }}</p>
+  <p {% if book_instance.is_overdue %} class="text-danger" {% endif %}>
+    Due date: {{ book_instance.due_back }}
+  </p>
 
   <form action="" method="POST">
     {% csrf_token %}
     <table>
-    {{ form.as_table }}
+      {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" />
   </form>
+</div>
 {% endblock %}

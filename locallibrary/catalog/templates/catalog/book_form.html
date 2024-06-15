@@ -1,17 +1,17 @@
-{% extends 'base_generic.html' %}
-
-
-{% block content %}
+{% extends 'base_generic.html' %} {% block content %}
 <div class="header">
-    <h1>Add Book</h1>
+  <h1>Add Book</h1>
 </div>
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit">
-    </form>
+<hr>
+
+<div class="main">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+  </form>
+</div>
 {% endblock content %}
-    

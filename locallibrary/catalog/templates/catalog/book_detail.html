@@ -1,64 +1,62 @@
-{% extends 'base_generic.html' %}
+{% extends 'base_generic.html' %} {% block sidebar %} {{ block.super }}
+<hr />
 
-
-{% block sidebar %}
-  {{ block.super }}
-  <hr>
-  
 {% if perms.catalog.change_book or perms.catalog.delete_book %}
-    
-  
-  <ul class="sidebar-nav">
-    {% if perms.catalog.change_book %}
-      <li><a href="{% url 'book-update' book.id %}">Update book</a></li>
-    {% endif %}
-    
-    
-    {% if perms.catalog.delete_book %}
-      <li><a href="{% url 'book-delete' book.id %}">Delete book</a></li>
-    {% endif %}
-      
-    
-    
-{% endif %}
 
-  </ul>
-    
-{% endblock sidebar %}
-  
+<ul class="sidebar-nav">
+  {% if perms.catalog.change_book %}
+  <li><a href="{% url 'book-update' book.id %}">Update book</a></li>
+  {% endif %} {% if perms.catalog.delete_book %}
+  <li><a href="{% url 'book-delete' book.id %}">Delete book</a></li>
+  {% endif %} {% endif %}
+</ul>
 
-{% block content %}
+{% endblock sidebar %} {% block content %}
 <div class="header">
   <h1>Title: {{ book.title }}</h1>
 </div>
-  <p><strong>Author:</strong> <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></p>
-  
+
+<hr>
+
+<div class="main">
+  <p>
+    <strong>Author:</strong>
+    <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a>
+  </p>
+
   <p><strong>Summary:</strong> {{ book.summary }}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Language:</strong> {{ book.language }}</p>
   <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
 
-  <div style="margin-left:20px;margin-top:20px">
+  <div style="margin-left: 20px; margin-top: 20px">
     <h4>Copies</h4>
 
     {% for copy in book.bookinstance_set.all %}
-      <hr />
-      <p
-        class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}">
-        {{ copy.get_status_display }} 
+    <hr />
+    <p
+      class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'm' %}text-danger{% else %}text-warning{% endif %}"
+    >
+      {{ copy.get_status_display }}
+    </p>
+    <div style="display: flex; flex-wrap: wrap; align-items: center">
+      {% if copy.status != 'a' %}
+      <p style="padding-top: 1rem">
+        <strong>Due to be returned:</strong> {{ copy.due_back }}
       </p>
-      <div style="display: flex; flex-wrap: wrap; align-items: center;">
+      {% if copy.status == 'o' %}
+      <a
+        style="margin: 0px 2rem"
+        href="{% url 'renew-book-librarian' copy.id %}"
+        class="btn btn-success"
+        >Renew book</a
+      >
+      {% endif %} {% endif %}
+    </div>
 
-        {% if copy.status != 'a' %}
-        <p style="padding-top: 1rem;"><strong>Due to be returned:</strong> {{ copy.due_back }}</p>
-          {% if copy.status == 'o' %}
-        <a style="margin:  0px 2rem;" href="{% url 'renew-book-librarian' copy.id %}" class="btn btn-success">Renew book</a>
-          {% endif %}
-        {% endif %}
-      </div>
-        
-      <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
-      <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
+    <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+    <p class="text-muted"><strong>Id:</strong> {{ copy.id }}</p>
     {% endfor %}
   </div>
+</div>
 {% endblock %}

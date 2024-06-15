@@ -2,7 +2,6 @@
 <div class="header">
   <h1>Delete Author: {{ author }}</h1>
 </div>
-
 <div class="main">
   {% if author.book_set.all %}
   <p class="text-danger">
@@ -24,4 +23,5 @@
     action="" value-"Yes, delete.">
   </form>
 </div>
-{% endif %} {% endblock content %}
+{% endif %} 
+{% endblock content %}

@@ -1,28 +1,34 @@
-{% extends "base_generic.html" %}
-
+{% extends "base_generic.html" %} 
 {% block content %}
 <div class="header">
-    <h1>All Books That Have Been Borrowed</h1>
+  <h1>All Books That Have Been Borrowed</h1>
 </div>
-    
 
-    {% if bookinstance_list %}
-        <table border="1" cellspacing="0" cellpadding="10" >
-            <tr>
-                <th>Book name</th>
-                <th>Borrower</th>
-            </tr>
-            {% for bookinst in bookinstance_list %}
-                <tr>
-                    <td><a href="{% url 'book-detail' bookinst.book.pk %}">{{ bookinst.book.title }}</a> ({{ bookinst.due_back }})</td>
-                    {% if user.is_staff %}
-                    <td>{{ bookinst.borrower }}</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
+<hr>
 
-        </table>
-        {% else %}
-        <p>There are no books borrowed.</p>
-    {% endif %}
-{% endblock  %}
+<div class="main">
+  {% if bookinstance_list %}
+  <table border="1" cellspacing="0" cellpadding="10">
+    <tr>
+      <th>Book name</th>
+      <th>Borrower</th>
+    </tr>
+    {% for bookinst in bookinstance_list %}
+    <tr>
+      <td>
+        <a href="{% url 'book-detail' bookinst.book.pk %}"
+          >{{ bookinst.book.title }}</a
+        >
+        ({{ bookinst.due_back }})
+      </td>
+      {% if user.is_staff %}
+      <td>{{ bookinst.borrower }}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>There are no books borrowed.</p>
+  {% endif %}
+</div>
+{% endblock %}
