@@ -34,3 +34,10 @@ class CustomPasswordResetView(PasswordResetView):
         except Exception as e:
             return HttpResponse(f'An error occurred: {e}')
 
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')
+
+    def form_valid(self, form):
+        return super(SignUpView, self).form_valid(form)
