@@ -24,7 +24,7 @@
                 {% block sidebar %}
                 <ul class="sidebar-nav">
                     {% if user.is_authenticated %}
-                    <li>Hello! {{ user.first_name }} {{ user.last_name }}</li>
+                    <li class="non-link"> {{ user.first_name }} {{ user.last_name }}</li>
                     {% endif %}
                     <li><a href="{% url 'index' %}">Home</a></li>
                     {% if user.is_authenticated %}
@@ -34,13 +34,12 @@
                     <li>
                         <form id="logout-form" method="POST" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-link">Logout</button>
+                            <button type="submit" class="btn btn-lg btn-link">Logout</button>
                         </form>
                     </li>
                     {% if user.is_staff %}
                     <hr>
-                    <ul class="sidebar-nav">
-                        <li>Staff</li>
+                        <li class="non-link">Staff</li>
                         <li><a href="{% url 'books-on-loan' %}">All borrowed</a></li>
                         {% if perms.catalog.add_book %}
                         <li><a href="{% url 'book-create' %}">Create book</a></li>

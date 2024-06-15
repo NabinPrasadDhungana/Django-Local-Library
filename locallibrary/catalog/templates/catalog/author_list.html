@@ -1,22 +1,23 @@
-{% extends 'base_generic.html' %}
-
-{% block content %}
+{% extends 'base_generic.html' %} {% block content %}
 <div class="header">
-    <h1>Author List</h1>
+  <h1>Author List</h1>
 </div>
 
-{% if author_list %}
-    <ul>
-        {% for author in author_list %}
-            <li>
-                <a href="{{ author.get_absolute_url }}">{{ author.last_name }} {{ author.first_name }}</a> ({{ author.date_of_birth }} - {{ author.date_of_death }})
-            </li>
-        {% endfor %}
-            
-    </ul>
-    {% else %}
-    <p>There are no authors listed in the library.</p>
-{% endif %}
+<div class="main">
+  {% if author_list %}
+  <ul>
+    {% for author in author_list %}
+    <li>
+      <a href="{{ author.get_absolute_url }}"
+        >{{ author.last_name }} {{ author.first_name }}</a
+      >
+      ({{ author.date_of_birth }} - {{ author.date_of_death }})
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>There are no authors listed in the library.</p>
+  {% endif %}
+</div>
 
-    
 {% endblock %}

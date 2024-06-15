@@ -11,7 +11,6 @@
               justify-content: center;
               align-items: center;
               height: 100vh;
-              //background: linear-gradient(90deg, rgba(174,238,234,1) 39%, rgba(208,148,233,1) 65%);
               background-color: #244855;
   }
   .card {
@@ -22,7 +21,7 @@
       border-radius: 9px;
   }
   .card p, label {
-    color: rgb(109, 107, 107);
+    color: rgb(0, 0, 0);
 
   }
   
@@ -62,53 +61,7 @@
       </div>
   </div>
 </div>
-  
-  <!-- {# Assumes you set up the password_reset view in your URLconf #} -->
-  <!-- <div class="container">
-    <div class="justify-content-center">
-      <div class="col-md-4">
-        <div class="card login-card">
-          
-          <div class="card-header text-center col-md-8">
-            <h4>Login</h4>
-          </div>
-          <div class="card-body col-md-8">
-            {% if form.errors %}
-              <p class="text-danger">Your username and password didn't match. Please try again.</p>
-            {% endif %}
-            
-            {% if next %}
-              {% if user.is_authenticated %}
-                <p class="text-danger">Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.</p>
-              {% else %}
-                <p class="text-info">Please login to see this page.</p>
-              {% endif %}
-            {% endif %}
-              <form method="POST" action="{% url 'login' %}">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="username">Email</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter your email" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
-                </div>
-                  <button type="submit" class="btn  btn-block">Login</button>
-                  <input type="hidden" name="next" value="{{ next }}">
-              </form>
-            <div class="card-footer text-muted text-center">
-                Don't have an account? <a href="#">Sign up</a>
-                <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
-<!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

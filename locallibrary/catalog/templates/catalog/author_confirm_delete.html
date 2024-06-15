@@ -3,23 +3,25 @@
   <h1>Delete Author: {{ author }}</h1>
 </div>
 
-{% if author.book_set.all %}
-<p class="text-danger">
-  You can't delete this author until all their books have been deleted:
-</p>
-<ul>
-  {% for book in author.book_set.all %}
-  <li>
-    <a href="{% url 'book-detail' book.pk %}">{{ book }}</a> ({{
-    book.bookinstance_set.all.count }})
-  </li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>Are you sure you want to delete the author?</p>
+<div class="main">
+  {% if author.book_set.all %}
+  <p class="text-danger">
+    You can't delete this author until all their books have been deleted:
+  </p>
+  <ul>
+    {% for book in author.book_set.all %}
+    <li>
+      <a href="{% url 'book-detail' book.pk %}">{{ book }}</a> ({{
+      book.bookinstance_set.all.count }})
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Are you sure you want to delete the author?</p>
 
-<form action="" method="POST">
-  {% csrf_token %} <input class="btn btn-sm btn-danger" type="submit" action=""
-  value-"Yes, delete.">
-</form>
+  <form action="" method="POST">
+    {% csrf_token %} <input class="btn btn-sm btn-danger" type="submit"
+    action="" value-"Yes, delete.">
+  </form>
+</div>
 {% endif %} {% endblock content %}
