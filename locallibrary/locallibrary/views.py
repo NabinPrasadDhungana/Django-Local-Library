@@ -9,6 +9,8 @@ from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
 
 from django.views.generic.edit import CreateView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import redirect
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 
@@ -34,10 +36,16 @@ class CustomPasswordResetView(PasswordResetView):
         except Exception as e:
             return HttpResponse(f'An error occurred: {e}')
 
-class SignUpView(CreateView):
+class SignUpView(UserPassesTestMixin, CreateView):
     form_class = SignUpForm
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         return super(SignUpView, self).form_valid(form)
+    
+    def test_func(self):
+        return not self.request.user.is_authenticated
+    
+    def handle_no_permission(self):
+        return redirect('home')
