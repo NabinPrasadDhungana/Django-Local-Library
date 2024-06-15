@@ -33,6 +33,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('password_reset/',CustomPasswordResetView.as_view(), name='password_reset'),
+
+    path('signup/', SignUpView.as_view(), name='signup'),
+
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
