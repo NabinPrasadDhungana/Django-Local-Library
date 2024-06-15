@@ -1,79 +1,73 @@
-{% extends 'base_generic.html' %} {% load static %} 
+{% extends 'base_generic.html' %} {% load static %} {% block sidebar %}
+{%endblock sidebar %} {% block content %}
+<style>
+    body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              background-color: #244855;
+  }
+  .card {
+      width: 30rem;
+      max-width: 400px;
+      background-color: #CCCCFF;
+      padding: 20px;
+      border-radius: 9px;
+  }
+  .card p, label {
+    color: rgb(0, 0, 0);
+  }
+</style>
 
-{% block sidebar %}{% endblock sidebar %}
-
-{% block content %}
-
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header text-center">
-          <h2>Sign Up</h2>
-        </div>
-        <div class="card-body">
-          <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-              <label for="{{ form.email.id_for_label }}"
-                >{{ form.email.label }}</label
-              >
-              {{ form.email }} {% if form.email.errors %}
-              <div class="text-danger">{{ form.email.errors }}</div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.first_name.id_for_label }}"
-                >{{ form.first_name.label }}</label
-              >
-              {{ form.first_name }} {% if form.first_name.errors %}
-              <div class="text-danger">{{ form.first_name.errors }}</div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.middle_name.id_for_label }}"
-                >{{ form.middle_name.label }}</label
-              >
-              {{ form.middle_name }} {% if form.middle_name.errors %}
-              <div class="text-danger">{{ form.middle_name.errors }}</div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.last_name.id_for_label }}"
-                >{{ form.last_name.label }}</label
-              >
-              {{ form.last_name }} {% if form.last_name.errors %}
-              <div class="text-danger">{{ form.last_name.errors }}</div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.password1.id_for_label }}"
-                >{{ form.password1.label }}</label
-              >
-              {{ form.password1 }} {% if form.password1.errors %}
-              <div class="text-danger">{{ form.password1.errors }}</div>
-              {% endif %}
-            </div>
-            <div class="form-group">
-              <label for="{{ form.password2.id_for_label }}"
-                >{{ form.password2.label }}</label
-              >
-              {{ form.password2 }} {% if form.password2.errors %}
-              <div class="text-danger">{{ form.password2.errors }}</div>
-              {% endif %}
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">
-              Sign Up
-            </button>
-          </form>
-        </div>
+<div class="card">
+  <div class="card-header text-center">
+    <h2>Sign Up</h2>
+  </div>
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email }} {% if form.email.errors %}
+        <div class="text-danger">{{ form.email.errors }}</div>
+        {% endif %}
       </div>
-      <div class="text-center mt-3">
-        <p>
-          Already have an account? <a href="{% url 'login' %}">Login here</a>
-        </p>
+      <div class="form-group"><label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+        {{ form.first_name }} 
+        {% if form.first_name.errors %}
+        <div class="text-danger">{{ form.first_name.errors }}</div>
+        {% endif %}
       </div>
-    </div>
+      <div class="form-group">
+        <label for="{{ form.middle_name.id_for_label }}">{{ form.middle_name.label }}</label>
+        {{ form.middle_name }} {% if form.middle_name.errors %}
+        <div class="text-danger">{{ form.middle_name.errors }}</div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+        {{ form.last_name }} {% if form.last_name.errors %}
+        <div class="text-danger">{{ form.last_name.errors }}</div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+        {{ form.password1 }} {% if form.password1.errors %}
+        <div class="text-danger">{{ form.password1.errors }}</div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+        {{ form.password2 }} {% if form.password2.errors %}
+        <div class="text-danger">{{ form.password2.errors }}</div>
+        {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+    </form>
+  </div>
+  <div class="card-text text-center mt-3">
+  <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
   </div>
 </div>
 

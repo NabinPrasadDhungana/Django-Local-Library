@@ -23,7 +23,7 @@
             <div class="col-sm-2 ham">
                 {% block sidebar %}
                 <ul class="sidebar-nav">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <li class="non-link"> {{ user.first_name }} {{ user.last_name }}</li>
                     {% endif %}
                     <li><a href="{% url 'index' %}">Home</a></li>
@@ -51,7 +51,8 @@
                     {% endif %}
                     {% else %}
                     <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
-                    {% endif %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
                 </ul>
                 {% endblock %}
             </div>

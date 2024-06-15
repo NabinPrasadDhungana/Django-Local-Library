@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
@@ -42,7 +43,11 @@ class SignUpView(UserPassesTestMixin, CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        return super(SignUpView, self).form_valid(form)
+        response = super().form_valid(form)
+        # Add user to the "librarians" group
+        group = Group.objects.get(name='library members')
+        self.object.groups.add(group)
+        return response
     
     def test_func(self):
         return not self.request.user.is_authenticated
