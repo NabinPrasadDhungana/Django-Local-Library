@@ -3,9 +3,16 @@ from django.contrib.auth.views import PasswordResetView
 from django.urls import reverse_lazy
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
+
+from django.views.generic.edit import CreateView
+from django.contrib.auth import login, authenticate
+from .forms import SignUpForm
+
+User = get_user_model()
 
 class CustomPasswordResetView(PasswordResetView):
     form_class = CustomPasswordResetForm
@@ -26,3 +33,4 @@ class CustomPasswordResetView(PasswordResetView):
             return HttpResponse('Invalid header found.')
         except Exception as e:
             return HttpResponse(f'An error occurred: {e}')
+

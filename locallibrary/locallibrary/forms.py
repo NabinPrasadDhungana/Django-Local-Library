@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm, UserCreationForm
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -18,3 +18,12 @@ class CustomPasswordResetForm(PasswordResetForm):
         if not User.objects.filter(email=email).exists():
             raise forms.ValidationError("This email address does not exist.")
         return email
+
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+    first_name = forms.CharField(max_length=30, required=True)
+    middle_name = forms.CharField(max_length=30, required=False)
+    last_name = forms.CharField(max_length=30, required=True)
+    class Meta:
+        model = User
+        fields = ('first_name', 'middle_name', 'last_name', 'email', 'password1', 'password2', )
