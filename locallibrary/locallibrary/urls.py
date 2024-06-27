@@ -24,6 +24,9 @@ from django.conf.urls.static import static
 
 from .views import *
 
+from django.views.generic import TemplateView # useful in displaying index.html template
+from django.contrib.auth.views import LogoutView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalog/', include('catalog.urls')),
@@ -35,6 +38,10 @@ urlpatterns = [
     path('password_reset/',CustomPasswordResetView.as_view(), name='password_reset'),
 
     path('signup/', SignUpView.as_view(), name='signup'),
+
+    # path('', TemplateView.as_view(template_name='index.html')),
+    # path('accounts/', include('allauth.urls')), # all OAuth operations will be performed under this route
+    # path('logout', LogoutView.as_view()) # default Django logout view at /logout
 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

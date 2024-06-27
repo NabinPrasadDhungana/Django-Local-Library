@@ -1,5 +1,28 @@
-../.venv
-.vscode/
-*.code-workspace
-.zshrc
+# Virtual environment
+.venv/
+
+# Python cache files
 __pycache__/
+*.pyc
+
+# Django specific
+*.log
+*.pot
+*.py[cod]
+*~
+*.swp
+*-checkpoint.ipynb
+
+# Environment variables
+.env
+
+# Database
+# *.sqlite3
+
+# Static and media files
+/staticfiles/
+/mediafiles/
+
+# IDE files
+.vscode/
+.idea/

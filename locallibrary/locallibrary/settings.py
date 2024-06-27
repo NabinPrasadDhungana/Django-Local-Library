@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.sites',
     'catalog.apps.CatalogConfig',
 ]
 
@@ -125,9 +126,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'index'  # or another URL you want to redirect to after logout
-LOGIN_REDIRECT_URL = 'index'  # or another URL you want to redirect to after login
+# LOGIN_URL = 'login'
+# LOGOUT_REDIRECT_URL = 'index'  # or another URL you want to redirect to after logout
+# LOGIN_REDIRECT_URL = 'index'  # or another URL you want to redirect to after login
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'   # Your SMTP server
